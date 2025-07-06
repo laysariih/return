@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Titan - Retorno Sombrio: Uma experiência sombria e envolvente está de volta!" />
   <title>Titan - Retorno Sombrio</title>
   <link rel="stylesheet" href="./titan/style.css" />
+  <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp-Wn-5VyFogS6WQCT-e7Q6eYjd5eHxTqQoX5sdc2OGeIVQwZqOwMzpi-P1h3vungugKs&usqp=CAU" type="image/png">
 </head>
 <body>
   <div class="background"></div>
@@ -12,9 +14,11 @@
     <p id="typewriter"></p>
   </div>
 
+  <div id="player" style="display:none;"></div>
+
   <script>
     const texts = [
-      "Não imaginam o prazer que é está de volta!",
+      "Não imaginam o prazer que é estar de volta!",
       "Sentiram Saudades?"
     ];
     let currentText = 0;
@@ -39,6 +43,39 @@
     }
 
     type();
+  </script>
+
+  <!-- YouTube API para controlar o volume -->
+  <script>
+    // Carrega a API do YouTube
+    let tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'h8UpC5JbMU0&list', 
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          loop: 1,
+          playlist: 'h8UpC5JbMU0&list', 
+          mute: 0
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      event.target.setVolume(5); 
+      event.target.playVideo();
+    }
   </script>
 </body>
 </html>
