@@ -1,0 +1,51 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Courier New', monospace;
+  background: black;
+  overflow: hidden;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ff0000;
+  font-size: 2rem;
+  text-shadow: 0 0 10px red, 0 0 20px black;
+  white-space: nowrap;
+}
+
+/* Fundo animado estilo "fumaça/sombras" */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,0,0,0.8) 30%, transparent 70%),
+              radial-gradient(circle, rgba(255,0,0,0.05) 10%, transparent 80%);
+  background-size: 50% 50%;
+  animation: smokeMove 60s linear infinite;
+  z-index: -1;
+  filter: blur(50px);
+}
+
+@keyframes smokeMove {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-25%, -25%) scale(1.1);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}

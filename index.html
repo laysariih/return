@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Titan - Retorno Sombrio</title>
+  <link rel="stylesheet" href="./titan/style.css" />
+</head>
+<body>
+  <div class="background"></div>
+  <div class="container">
+    <p id="typewriter"></p>
+  </div>
+
+  <script>
+    const texts = [
+      "Não imaginam o prazer que é está de volta!",
+      "Sentiram Saudades?"
+    ];
+    let currentText = 0;
+    let charIndex = 0;
+    const speed = 80; 
+    const delayBetweenTexts = 2000;
+    const typewriter = document.getElementById("typewriter");
+
+    function type() {
+      if (charIndex < texts[currentText].length) {
+        typewriter.innerHTML += texts[currentText].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, speed);
+      } else {
+        setTimeout(() => {
+          typewriter.innerHTML = "";
+          charIndex = 0;
+          currentText = (currentText + 1) % texts.length;
+          type();
+        }, delayBetweenTexts);
+      }
+    }
+
+    type();
+  </script>
+</body>
+</html>
