@@ -6,7 +6,7 @@
   <meta name="description" content="Titan - Retorno Sombrio: Uma experiência sombria e envolvente está de volta!" />
   <title>Titan - Retorno Sombrio</title>
   <link rel="stylesheet" href="./titan/style.css" />
-  <link rel="icon" href="https://gifyu.com/image/bHX5P.png" type="image/png">
+  <link rel="icon" href="https://s14.gifyu.com/images/bHX5P.jpg" type="image/png">
 </head>
 <body>
   <div class="background"></div>
@@ -45,9 +45,7 @@
     type();
   </script>
 
-  <!-- YouTube API para controlar o volume -->
-  <script>
-    // Carrega a API do YouTube
+<script>
     let tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     let firstScriptTag = document.getElementsByTagName('script')[0];
@@ -58,13 +56,14 @@
       player = new YT.Player('player', {
         height: '0',
         width: '0',
-        videoId: 'h8UpC5JbMU0', 
+        videoId: 'h8UpC5JbMU0',
         playerVars: {
           autoplay: 1,
           controls: 0,
           loop: 1,
-          playlist: 'h8UpC5JbMU0', 
-          mute: 0
+          playlist: 'h8UpC5JbMU0',
+          mute: 1,
+          start: 830
         },
         events: {
           'onReady': onPlayerReady
@@ -73,9 +72,16 @@
     }
 
     function onPlayerReady(event) {
-      event.target.setVolume(10); 
       event.target.playVideo();
     }
+
+    
+    document.addEventListener('click', () => {
+      if (player && typeof player.unMute === 'function') {
+        player.unMute();
+        player.setVolume(10);
+      }
+    });
   </script>
 </body>
 </html>
